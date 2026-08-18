@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Simple, fast and clear currency conversions." />
+  <title>CurrencyFlow — Currency Converter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="CurrencyFlow home">
+        <span class="brand-mark" aria-hidden="true"><span>⇄</span></span>
+        <span>
+          <strong>CurrencyFlow</strong>
+          <small>Simple · Fast · Clear</small>
+        </span>
+      </a>
+
+      <div class="top-actions">
+        <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">☼</button>
+        <div class="rate-status" id="rateStatus">
+          <span class="status-dot"></span>
+          <span>
+            <small>Rates updated</small>
+            <strong id="rateDate">Loading…</strong>
+          </span>
+          <button class="info-button" type="button" id="infoButton" aria-label="Rate information">i</button>
+        </div>
+        <button class="icon-button" id="settingsButton" type="button" aria-label="Settings" title="Settings">⚙</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="page-heading">
+        <div>
+          <h1>Currency Converter</h1>
+          <p>Add multiple conversions and track rates easily.</p>
+        </div>
+        <button class="primary-button" id="addTopButton" type="button"><span>＋</span> Add conversion</button>
+      </section>
+
+      <section class="conversion-list" id="conversionList" aria-live="polite"></section>
+
+      <button class="add-row-button" id="addRowButton" type="button">
+        <span class="add-circle">＋</span>
+        <span>Add another conversion</span>
+      </button>
+
+      <aside class="notice">
+        <span class="notice-icon">♢</span>
+        <span>Rates are indicative and may differ from bank or money transfer rates.</span>
+        <span class="source">Source: <a href="https://frankfurter.dev/" target="_blank" rel="noreferrer">Frankfurter</a> ↗</span>
+      </aside>
+
+      <footer>
+        <span>CurrencyFlow prototype</span>
+        <span>Rates cached for up to 6 hours</span>
+      </footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="infoModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" type="button" aria-label="Close">×</button>
+      <h2 id="modalTitle">About these rates</h2>
+      <p>CurrencyFlow fetches reference exchange rates and calculates each conversion in your browser. Rates are cached locally for up to 6 hours to keep the page fast and reduce API requests.</p>
+      <p>The prototype uses the free Frankfurter API. Its rates are reference/indicative rates, not live trading prices.</p>
+      <button class="secondary-button" id="modalRefresh" type="button">Refresh rates now</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
