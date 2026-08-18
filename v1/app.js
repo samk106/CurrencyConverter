@@ -87,7 +87,7 @@ function render() {
       <div class="currency-wrap">
         <span class="field-label">From</span>
         <button class="currency-select" data-side="from" type="button" aria-label="Select source currency">
-          <span class="currency-main"><span class="flag">${from.flag}</span><span><span class="currency-code">${from.code}</span><span class="currency-name">${from.name}</span></span></span>
+          <span class="currency-main"><span class="flag">${from.flag}</span><span class="currency-code">${from.code}</span></span>
           <span class="chevron">⌄</span>
         </button>
       </div>
@@ -95,7 +95,7 @@ function render() {
       <div class="currency-wrap">
         <span class="field-label">To</span>
         <button class="currency-select" data-side="to" type="button" aria-label="Select target currency">
-          <span class="currency-main"><span class="flag">${to.flag}</span><span><span class="currency-code">${to.code}</span><span class="currency-name">${to.name}</span></span></span>
+          <span class="currency-main"><span class="flag">${to.flag}</span><span class="currency-code">${to.code}</span></span>
           <span class="chevron">⌄</span>
         </button>
       </div>
@@ -162,7 +162,7 @@ function openPicker(index, side) {
     currencies.filter(c => c.code.toLowerCase().includes(q) || c.name.toLowerCase().includes(q)).forEach(c => {
       const button = document.createElement('button');
       button.className = 'currency-option'; button.type = 'button';
-      button.innerHTML = `<span class="flag">${c.flag}</span><span><strong>${c.code}</strong><small>${c.name}</small></span>`;
+      button.innerHTML = `<span class="flag">${c.flag}</span><strong>${c.code}</strong>`;
       button.addEventListener('click', () => {
         rows[index][side] = c.code; saveRows(); closePicker(); render();
       });
@@ -250,18 +250,14 @@ list.addEventListener('click', event => {
 });
 
 document.getElementById('addRowButton').addEventListener('click', addRow);
-document.getElementById('addTopButton').addEventListener('click', addRow);
-document.getElementById('infoButton').addEventListener('click', () => document.getElementById('infoModal').hidden = false);
-document.getElementById('modalClose').addEventListener('click', () => document.getElementById('infoModal').hidden = true);
-document.getElementById('modalRefresh').addEventListener('click', () => { document.getElementById('infoModal').hidden = true; loadRates(true); });
-document.getElementById('infoModal').addEventListener('click', e => { if (e.target.id === 'infoModal') e.currentTarget.hidden = true; });
+document.getElementById('updateRatesButton').addEventListener('click', () => loadRates(true));
 
 document.getElementById('themeToggle').addEventListener('click', () => {
   document.body.classList.toggle('dark');
   localStorage.setItem(THEME_KEY, document.body.classList.contains('dark') ? 'dark' : 'light');
 });
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closePicker(); document.getElementById('infoModal').hidden = true; } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePicker(); });
 
 if (localStorage.getItem(THEME_KEY) === 'dark') document.body.classList.add('dark');
 render();
