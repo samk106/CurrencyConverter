@@ -4,9 +4,9 @@
 - - -
 
 
-# v1
+# v1/v1a
 - Date - 18 Aug 26
-- AI Used - Gemini
+- AI Used - CGPT
 #### Changes List
 - Removed the Add conversion button, replaced it in the top bar with Update rates.
 - Removed the rate-information popup completely, No initial popup.
@@ -17,7 +17,7 @@
 
 # v0
 - Date - 18 Aug 26
-- AI Used - Gemini
+- AI Used - CGPT
 #### Changes List
 - Initial prototype build
 
